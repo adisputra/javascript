@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sewa Alat Kamping</title>
+  <meta name="description" content="Sewa peralatan kamping: tenda, carrier, sleeping bag, alat masak. Cek stok & booking online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/img/tenda.svg" />
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <div class="container">
+      <a href="#" class="brand">
+        <span class="brand-logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 4l9 16Z"/><path d="M12 20v-6"/></svg></span>
+        <span data-info="business_name">Rental Kamping</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#katalog">Katalog</a>
+        <a href="#cara-sewa">Cara Sewa</a>
+        <a href="#ulasan">Ulasan</a>
+        <a href="#kontak">Kontak & Lokasi</a>
+      </nav>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost cart-btn" id="cartBtn" aria-label="Keranjang sewa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        <span class="btn-label">Keranjang</span>
+        <span class="cart-count hidden" id="cartCount">0</span>
+      </button>
+      <button class="btn" id="accountBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+        <span class="btn-label" id="accountLabel">Masuk</span>
+      </button>
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge ok">Booking online • stok real-time</span>
+        <h1>Siap ke alam? <em>Sewa perlengkapan</em> tanpa ribet.</h1>
+        <p class="lead" data-info="tagline">Sewa perlengkapan kamping lengkap, bersih, siap petualangan.</p>
+        <form class="card search-box" id="heroSearch">
+          <div><label for="heroStart">Tanggal ambil</label><input type="date" id="heroStart" required /></div>
+          <div><label for="heroEnd">Tanggal kembali</label><input type="date" id="heroEnd" required /></div>
+          <button class="btn" type="submit">Cek stok</button>
+        </form>
+        <div class="hero-stats">
+          <div><b id="statItems">–</b><span class="muted small">jenis alat</span></div>
+          <div><b id="statRating">–</b><span class="muted small">rating pelanggan</span></div>
+          <div><b data-info="hours" class="small" style="font-size:1rem">–</b><span class="muted small">jam operasional</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6c77a"/><stop offset=".55" stop-color="#f2a65a"/><stop offset="1" stop-color="#c76b3d"/></linearGradient></defs>
+          <rect width="600" height="450" fill="url(#sky)"/>
+          <circle cx="430" cy="150" r="60" fill="#fff2cf" opacity=".85"/>
+          <path d="M0 300 L120 190 L210 260 L330 150 L460 250 L600 170 V450 H0Z" fill="#7d4a3a" opacity=".55"/>
+          <path d="M0 340 L140 260 L260 330 L400 240 L600 330 V450 H0Z" fill="#2f4d33"/>
+          <path d="M0 380 Q300 340 600 380 V450 H0Z" fill="#1f3524"/>
+          <path d="M250 395 L330 280 L410 395Z" fill="#f2b84b"/><path d="M330 280 L355 395 H305Z" fill="#c4812a"/>
+          <g fill="#13251a"><path d="M80 390 l20-70 20 70z"/><path d="M110 395 l26-95 26 95z"/><path d="M500 392 l22-80 22 80z"/><path d="M530 396 l18-60 18 60z"/></g>
+          <circle cx="210" cy="405" r="9" fill="#ffb347"/><path d="M200 412h20" stroke="#5b3a22" stroke-width="5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KATALOG ===== -->
+  <section id="katalog" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Katalog peralatan</h2>
+          <p>Harga sewa per hari. Pilih tanggal untuk melihat stok yang tersedia.</p>
+        </div>
+        <input type="search" id="search" placeholder="Cari tenda, carrier…" style="max-width:260px" />
+      </div>
+      <div class="date-note" id="dateNote"></div>
+      <div class="filters" id="filters"></div>
+      <div class="products" id="products"><div class="empty">Memuat katalog…</div></div>
+    </div>
+  </section>
+
+  <!-- ===== CARA SEWA ===== -->
+  <section id="cara-sewa">
+    <div class="container">
+      <div class="section-head"><div><h2>Cara sewa</h2><p>Empat langkah, selesai.</p></div></div>
+      <div class="steps">
+        <div class="card step"><h3>Daftar / masuk</h3><p>Buat akun dengan nama, no. HP, dan no. KTP.</p></div>
+        <div class="card step"><h3>Pilih alat & tanggal</h3><p>Masukkan ke keranjang, cek stok sesuai tanggal sewa.</p></div>
+        <div class="card step"><h3>Kirim form sewa</h3><p>Admin mengonfirmasi pesanan Anda secepatnya.</p></div>
+        <div class="card step"><h3>Bayar & ambil</h3><p>DP atau lunas, ambil barang dengan membawa KTP asli.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ULASAN ===== -->
+  <section id="ulasan" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <div><h2>Kata mereka</h2><p id="ratingSummary">Ulasan dari pelanggan kami.</p></div>
+        <button class="btn btn-ghost" id="writeReviewBtn">Tulis ulasan</button>
+      </div>
+      <div class="reviews" id="reviews"></div>
+    </div>
+  </section>
+
+  <!-- ===== KONTAK & LOKASI ===== -->
+  <section id="kontak">
+    <div class="container">
+      <div class="section-head"><div><h2>Kontak & lokasi</h2><p data-info="about"></p></div></div>
+      <div class="contact-grid">
+        <div class="card pad">
+          <ul class="contact-list">
+            <li><span class="ico">📍</span><div><b>Alamat</b><div class="muted" data-info="address"></div></div></li>
+            <li><span class="ico">🕗</span><div><b>Jam buka</b><div class="muted" data-info="hours"></div></div></li>
+            <li><span class="ico">💬</span><div><b>WhatsApp</b><div><a id="waLink" target="_blank" rel="noopener" data-info="phone"></a></div></div></li>
+            <li><span class="ico">✉️</span><div><b>Email</b><div><a id="mailLink" data-info="email"></a></div></div></li>
+            <li><span class="ico">📷</span><div><b>Instagram</b><div><a id="igLink" target="_blank" rel="noopener"></a></div></div></li>
+          </ul>
+          <h3 style="font-size:1rem">Kirim pesan</h3>
+          <form id="contactForm">
+            <div class="grid-2">
+              <div class="field"><input name="name" placeholder="Nama" required /></div>
+              <div class="field"><input name="contact" placeholder="No. HP / email" required /></div>
+            </div>
+            <div class="field"><textarea name="message" placeholder="Pesan Anda" required></textarea></div>
+            <button class="btn" type="submit">Kirim pesan</button>
+          </form>
+        </div>
+        <iframe class="map card" id="map" title="Peta lokasi" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container row">
+      <span>© <span id="year"></span> <span data-info="business_name"></span></span>
+      <span class="spacer"></span>
+      <a href="/admin" class="muted">Login admin</a>
+    </div>
+  </footer>
+
+  <!-- ===== Keranjang / form sewa ===== -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Keranjang sewa">
+    <div class="drawer-head"><h3>Form sewa</h3><button class="icon-btn" data-close>✕</button></div>
+    <div class="drawer-body">
+      <div id="cartAlert"></div>
+      <div class="grid-2">
+        <div class="field"><label for="cartStart">Tanggal ambil</label><input type="date" id="cartStart" /></div>
+        <div class="field"><label for="cartEnd">Tanggal kembali</label><input type="date" id="cartEnd" /></div>
+      </div>
+      <div id="cartItems"></div>
+      <div class="field" style="margin-top:14px">
+        <label for="pickup">Metode pengambilan</label>
+        <select id="pickup"><option value="ambil">Ambil di toko</option><option value="antar">Diantar (ongkir menyusul)</option></select>
+      </div>
+      <div class="field"><label for="notes">Catatan (opsional)</label><textarea id="notes" placeholder="Mis. tujuan pendakian, jam ambil"></textarea></div>
+    </div>
+    <div class="drawer-foot">
+      <div class="summary" id="cartSummary"></div>
+      <button class="btn btn-block" id="checkoutBtn" style="margin-top:12px">Kirim pesanan</button>
+    </div>
+  </aside>
+
+  <!-- ===== Modal akun ===== -->
+  <div class="modal" id="authModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-head"><h3>Akun pelanggan</h3><button class="icon-btn" data-close>✕</button></div>
+      <div class="modal-body">
+        <div class="tabs"><button data-tab="login" class="active">Masuk</button><button data-tab="register">Daftar</button></div>
+        <div id="authAlert"></div>
+        <form id="loginForm">
+          <div class="field"><label>Email</label><input type="email" name="email" required autocomplete="email" /></div>
+          <div class="field"><label>Password</label><input type="password" name="password" required autocomplete="current-password" /></div>
+          <button class="btn btn-block">Masuk</button>
+        </form>
+        <form id="registerForm" class="hidden">
+          <div class="field"><label>Nama lengkap *</label><input name="name" required /></div>
+          <div class="grid-2">
+            <div class="field"><label>Email *</label><input type="email" name="email" required /></div>
+            <div class="field"><label>No. HP / WA *</label><input name="phone" required inputmode="tel" /></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>No. KTP</label><input name="id_number" inputmode="numeric" /></div>
+            <div class="field"><label>Password * (min. 6)</label><input type="password" name="password" minlength="6" required autocomplete="new-password" /></div>
+          </div>
+          <div class="field"><label>Alamat</label><textarea name="address" rows="2"></textarea></div>
+          <button class="btn btn-block">Daftar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal akun saya ===== -->
+  <div class="modal" id="meModal" role="dialog" aria-modal="true">
+    <div class="modal-box wide">
+      <div class="modal-head"><h3 id="meTitle">Akun saya</h3><button class="icon-btn" data-close>✕</button></div>
+      <div class="modal-body">
+        <div class="tabs"><button data-tab="mybookings" class="active">Pesanan saya</button><button data-tab="profile">Data diri</button></div>
+        <div id="myBookings"></div>
+        <form id="profileForm" class="hidden">
+          <div id="profileAlert"></div>
+          <div class="grid-2">
+            <div class="field"><label>Nama</label><input name="name" required /></div>
+            <div class="field"><label>No. HP / WA</label><input name="phone" required /></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Email</label><input name="email" disabled /></div>
+            <div class="field"><label>No. KTP</label><input name="id_number" /></div>
+          </div>
+          <div class="field"><label>Alamat</label><textarea name="address" rows="2"></textarea></div>
+          <details style="margin-bottom:14px"><summary class="small" style="cursor:pointer">Ganti password</summary>
+            <div class="grid-2" style="margin-top:10px">
+              <div class="field"><input type="password" name="current_password" placeholder="Password lama" /></div>
+              <div class="field"><input type="password" name="new_password" placeholder="Password baru" /></div>
+            </div>
+          </details>
+          <div class="row"><button class="btn">Simpan</button><span class="spacer"></span><button type="button" class="btn btn-ghost" id="logoutBtn">Keluar</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal ulasan ===== -->
+  <div class="modal" id="reviewModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-head"><h3>Tulis ulasan</h3><button class="icon-btn" data-close>✕</button></div>
+      <div class="modal-body">
+        <div id="reviewAlert"></div>
+        <form id="reviewForm">
+          <div class="field"><label>Rating</label>
+            <div class="rating-input">
+              <input type="radio" name="rating" id="r5" value="5" checked /><label for="r5">★</label>
+              <input type="radio" name="rating" id="r4" value="4" /><label for="r4">★</label>
+              <input type="radio" name="rating" id="r3" value="3" /><label for="r3">★</label>
+              <input type="radio" name="rating" id="r2" value="2" /><label for="r2">★</label>
+              <input type="radio" name="rating" id="r1" value="1" /><label for="r1">★</label>
+            </div>
+          </div>
+          <div class="field"><label>Pengalaman Anda</label><textarea name="comment" required></textarea></div>
+          <button class="btn btn-block">Kirim ulasan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Chatbot ===== -->
+  <div class="card chat-panel" id="chatPanel" role="dialog" aria-label="Chat bantuan">
+    <div class="chat-head">
+      <span style="font-size:1.4rem">🏕️</span>
+      <div><b>Asisten Rental</b><span class="small" style="opacity:.85">Online • balas instan</span></div>
+      <button class="icon-btn" id="chatClose">✕</button>
+    </div>
+    <div class="chat-log" id="chatLog"></div>
+    <div class="quick" id="chatQuick">
+      <button>Daftar harga</button><button>Cara sewa</button><button>Pembayaran</button><button>Lokasi</button><button>Jam buka</button>
+    </div>
+    <form class="chat-form" id="chatForm">
+      <input id="chatInput" placeholder="Tulis pertanyaan…" autocomplete="off" />
+      <button class="btn">Kirim</button>
+    </form>
+  </div>
+  <div class="fab-wrap">
+    <a class="fab wa" id="waFab" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.7-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>
+    </a>
+    <button class="fab chat" id="chatFab" aria-label="Buka chat bantuan">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg>
+    </button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="/js/common.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

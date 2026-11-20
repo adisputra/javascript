@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Rental Kamping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <link rel="icon" href="/img/tenda.svg" />
+</head>
+<body>
+  <!-- Login -->
+  <div class="login-wrap hidden" id="loginView">
+    <form class="card login-card" id="adminLogin">
+      <div class="brand" style="margin-bottom:18px"><span class="brand-logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M3 20 12 4l9 16Z"/><path d="M12 20v-6"/></svg></span>Panel Admin</div>
+      <div id="loginAlert"></div>
+      <div class="field"><label>Email admin</label><input type="email" name="email" required autocomplete="username" /></div>
+      <div class="field"><label>Password</label><input type="password" name="password" required autocomplete="current-password" /></div>
+      <button class="btn btn-block">Masuk</button>
+      <p class="small muted" style="margin-top:14px"><a href="/">← Kembali ke website</a></p>
+    </form>
+  </div>
+
+  <!-- Aplikasi admin -->
+  <div class="admin-shell hidden" id="appView">
+    <aside class="sidebar" id="sidebar">
+      <a href="/" class="brand" target="_blank"><span class="brand-logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M3 20 12 4l9 16Z"/><path d="M12 20v-6"/></svg></span><span id="bizName">Admin</span></a>
+      <button class="side-link" data-view="dashboard">📊 Dashboard</button>
+      <button class="side-link" data-view="bookings">📋 Daftar booking <span class="count hidden" id="cntPending"></span></button>
+      <button class="side-link" data-view="finance">💰 Uang masuk</button>
+      <button class="side-link" data-view="outstanding">⏰ Pembayaran nunggak <span class="count hidden" id="cntOutstanding"></span></button>
+      <button class="side-link" data-view="equipment">🎒 Database peralatan</button>
+      <button class="side-link" data-view="stock">🔁 Keluar / masuk barang</button>
+      <button class="side-link" data-view="maintenance">🛠️ Maintenance</button>
+      <button class="side-link" data-view="customers">👥 Database pelanggan</button>
+      <button class="side-link" data-view="reviews">⭐ Ulasan & pesan <span class="count hidden" id="cntInbox"></span></button>
+      <button class="side-link" data-view="settings">⚙️ Pengaturan</button>
+      <div class="spacer"></div>
+      <button class="side-link" id="logout">↩ Keluar</button>
+    </aside>
+    <main class="main">
+      <div class="topbar">
+        <button class="icon-btn admin-menu-toggle" id="sideToggle" aria-label="Menu">☰</button>
+        <h1 id="viewTitle">Dashboard</h1>
+        <span class="spacer"></span>
+        <div id="viewActions" class="row"></div>
+      </div>
+      <div id="view"></div>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-box" id="modalBox">
+      <div class="modal-head"><h3 id="modalTitle"></h3><button class="icon-btn" data-close>✕</button></div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>window.TOKEN_KEY = 'rk_admin_token';</script>
+  <script src="/js/common.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

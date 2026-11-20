@@ -1,0 +1,31 @@
+{
+  "name": "rental-kamping",
+  "version": "1.0.0",
+  "description": "Website + REST API penyewaan peralatan kamping (pelanggan & admin)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node src/seed.js --reset",
+    "test": "node --test test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adisputra/javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/adisputra/javascript/issues"
+  },
+  "homepage": "https://github.com/adisputra/javascript#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.11.0",
+    "express": "^4.22.3",
+    "multer": "^1.4.4"
+  },
+  "engines": {
+    "node": ">=22.5"
+  }
+}
